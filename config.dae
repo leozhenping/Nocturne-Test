@@ -1,0 +1,44 @@
+global {
+    lan_interface: eth0
+    wan_interface: auto
+    log_level: debug
+    auto_config_kernel_parameter: true
+    dial_mode: domain
+    allow_insecure: false
+    tls_implementation: tls
+    utls_imitate: chrome_auto
+}
+subscription {
+}
+node {
+    vmess: 'vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIue+juWbvUdJQSBDTjIiLA0KICAiYWRkIjogIm1nZ2lhLmJpZ2J1bGxtYXJrZXQudG9wIiwNCiAgInBvcnQiOiAiNDQzIiwNCiAgImlkIjogImQ3OGIyMDJjLTkwNDUtNDhhZi1hOTc3LTc4MWZjNTBmMTk1MiIsDQogICJhaWQiOiAiMCIsDQogICJzY3kiOiAiYXV0byIsDQogICJuZXQiOiAid3MiLA0KICAidHlwZSI6ICJub25lIiwNCiAgImhvc3QiOiAibWdnaWEuYmlnYnVsbG1hcmtldC50b3AiLA0KICAicGF0aCI6ICIvZXB4ZHZ3cyIsDQogICJ0bHMiOiAidGxzIiwNCiAgInNuaSI6ICJtZ2dpYS5iaWdidWxsbWFya2V0LnRvcCIsDQogICJhbHBuIjogIiIsDQogICJmcCI6ICIiDQp9'
+}
+group {
+    xyz_proxy {
+        policy: fixed(0)
+    }
+}
+dns {
+  upstream {
+    googledns: 'tcp://8.8.8.8:53'
+    alidns: 'udp://119.29.29.29:53'
+  }
+  routing {
+    request {
+      qname(geosite:cn) -> alidns
+      fallback: googledns
+    }
+    response {
+        upstream(googledns) -> accept
+        fallback: accept
+    }
+  }
+}
+
+routing {
+    pname(NetworkManager) -> direct
+    dip(224.0.0.0/3, 'ff00::/8') -> direct
+    dip(ext:'geoip.dat:private') -> direct
+    l4proto(udp) && dport(8336) -> xyz_proxy
+    fallback: direct
+}

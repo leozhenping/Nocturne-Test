@@ -11,7 +11,7 @@ global {
 subscription {
 }
 node {
-    vmess: 'vmess://ew0KICAidiI6ICIyIiwNCiAgInBzIjogIue+juWbvUdJQSBDTjIiLA0KICAiYWRkIjogIm1nZ2lhLmJpZ2J1bGxtYXJrZXQudG9wIiwNCiAgInBvcnQiOiAiNDQzIiwNCiAgImlkIjogImQ3OGIyMDJjLTkwNDUtNDhhZi1hOTc3LTc4MWZjNTBmMTk1MiIsDQogICJhaWQiOiAiMCIsDQogICJzY3kiOiAiYXV0byIsDQogICJuZXQiOiAid3MiLA0KICAidHlwZSI6ICJub25lIiwNCiAgImhvc3QiOiAibWdnaWEuYmlnYnVsbG1hcmtldC50b3AiLA0KICAicGF0aCI6ICIvZXB4ZHZ3cyIsDQogICJ0bHMiOiAidGxzIiwNCiAgInNuaSI6ICJtZ2dpYS5iaWdidWxsbWFya2V0LnRvcCIsDQogICJhbHBuIjogIiIsDQogICJmcCI6ICIiDQp9'
+    vmess: 'vmess://xxxx'
 }
 group {
     xyz_proxy {
